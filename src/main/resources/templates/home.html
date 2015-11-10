@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beer Tracker</title>
+</head>
+<body>
+<form action="add-beer" method="post">
+    <input type="text" placeholder="Beer Name" name="beerName"/>
+    <select name="beerType">
+        <option value="Ale">Ale</option>
+        <option value="Lager">Lager</option>
+        <option value="Pilsner">Pils</option>
+        <option value="Stout">stout</option>
+        <option value="Other">Other</option>
+    </select>
+    <button type="submit">submit</button>
+</form>
+
+{{#beers}}
+ {{id}}. {{name}} -  {{type}} <br>
+{{/beers}}
+
+</body>
+</html>
