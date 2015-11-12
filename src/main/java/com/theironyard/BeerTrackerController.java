@@ -33,9 +33,13 @@ public class BeerTrackerController {
     }
 
     @RequestMapping("/")
-    public String home(HttpServletRequest request, Model model, String type, Integer calories, String search,
+    public String home(HttpSession session,
+                       Model model,
+                       String type,
+                       Integer calories,
+                       String search,
                        String showMine){
-        HttpSession session = request.getSession();
+        //HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
 
         if (username == null){
@@ -61,9 +65,15 @@ public class BeerTrackerController {
     }
 
     @RequestMapping("add-beer")
-    public String addBeer(HttpServletRequest request, String beerName, String beerType, Integer beercalories){
-        HttpSession session = request.getSession();
+    public String addBeer(HttpSession session,
+                          String beerName,
+                          String beerType,
+                          int beercalories) throws Exception {
+       // HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
+       if (username == null){
+           throw new Exception("Not logged in!");
+       }
         User user = users.findOneByName(username);
 
         Beer beer = new Beer();
@@ -75,7 +85,13 @@ public class BeerTrackerController {
         return "redirect:/";
     }
     @RequestMapping("edit-beer")
-    public String editBeer(Integer id, String name, String type){
+    public String editBeer(HttpSession session,
+                           int id,
+                           String name,
+                           String type) throws Exception {
+       if (session.getAttribute("username")==null){
+           throw new Exception("Not logged in!");
+       }
         Beer beer = beers.findOne(id);
         beer.name = name;
         beer.type = type;
@@ -83,8 +99,8 @@ public class BeerTrackerController {
         return "redirect:/";
     }
     @RequestMapping("login")
-    public String login(HttpServletRequest request, String username, String password) throws Exception {
-        HttpSession session = request.getSession();
+    public String login(HttpSession session, String username, String password) throws Exception {
+       // HttpSession session = request.getSession();
         session.setAttribute("username", username);
 
         User user = users.findOneByName(username);
