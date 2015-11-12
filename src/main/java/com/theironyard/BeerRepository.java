@@ -20,5 +20,4 @@ public interface BeerRepository extends CrudRepository<Beer, Integer>{
     @Query("SELECT b FROM Beer b WHERE LOWER(name) LIKE '%' || LOWER(?) || '%'")   //wants table capitalized for some reason. just remember it.
     List<Beer> searchByName(String name);
 
-
 }
