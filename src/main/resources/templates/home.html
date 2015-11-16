@@ -16,21 +16,21 @@
 <a href="/?showMine=true">My Beers</a>
 <br><br>
 <form action="/" method="get">
-    <input type="text" placeholder="search" name="search">
+    <input type="text" placeholder="search" name="search"  required>
     <button type="submit">Search</button>
 </form>
 <br><br>
 
 <form action="add-beer" method="post">
-    <input type="text" placeholder="Beer Name" name="beerName"/>
-    <select name="beerType">
+    <input type="text" placeholder="Beer Name" name="beerName" required/>
+    <select name="beerType" required>
         <option value="Ale">Ale</option>
         <option value="Lager">Lager</option>
         <option value="Pilsner">Pils</option>
         <option value="Stout">stout</option>
         <option value="Other">Other</option>
     </select>
-    <input type="number" placeholder="calories" name="beercalories">
+    <input type="number" placeholder="calories" name="beercalories" required>
     <button type="submit">submit</button>
 </form>
 
