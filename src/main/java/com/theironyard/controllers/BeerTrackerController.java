@@ -73,7 +73,7 @@ public class BeerTrackerController {
     public String addBeer(HttpSession session,
                           String beerName,
                           String beerType,
-                          int beercalories) throws Exception {
+                          Integer beercalories) throws Exception {
        // HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
        if (username == null){
